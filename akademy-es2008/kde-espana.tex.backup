@@ -1,0 +1,118 @@
+\documentclass[12pt]{beamer}
+
+\usetheme{Oxygen}
+\usepackage[spanish]{babel}
+\usepackage{thumbpdf}
+\usepackage{wasysym}
+\usepackage{ucs}
+\usepackage[utf8]{inputenc}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade}
+\usepackage{verbatim}
+\usenavigationsymbolstemplate{}
+
+\pdfinfo
+{
+  /Title       (KDE-ESPANA)
+  /Creator     (KILE)
+  /Author      (RAFAEL FERNANDEZ LOPEZ Y ALBERT ASTALS CID)
+}
+
+\AtBeginSection[]
+{
+  \frame<handout:0>
+  {
+    \frametitle{Akademy-es 2008}
+    \tableofcontents[currentsection]
+  }
+}
+
+\title{KDE España}
+\subtitle{Una asociación para \textbf{TÍ}}
+\author{Rafael Fernández López, Albert Astals Cid}
+\date{Noviembre, 2008}
+
+\begin{document}
+
+\begin{frame}{Akademy-es 2008}
+  \framesubtitle{ereslibre@kde.org, aacid@kde.org}
+  \titlepage
+\end{frame}
+
+
+\section*{}
+\begin{frame}{Akademy-es 2008}
+  \framesubtitle{}
+  \tableofcontents[section=1]
+\end{frame}
+
+\newcommand<>{\highlighton}[1]{%
+  \alt#2{\structure{#1}}{{#1}}
+}
+
+\newcommand{\icon}[1]{\pgfimage[height=1em]{#1}}
+
+
+\section{¿Qué es KDE España?}
+
+\begin{frame}{¿Qué es KDE España?}
+  \framesubtitle{}
+  \begin{itemize}
+    \item KDE España es una \textbf{asociación cultural} sin ánimo de lucro
+    \begin{itemize}
+      \item Se encuentra en \textbf{proceso de regulación}
+    \end{itemize}
+    \item Cuenta con una junta directiva de \textbf{cuatro} personas:
+    \begin{itemize}
+      \item Presidente
+      \item Vicepresidente
+      \item Tesorero
+      \item Secretario
+    \end{itemize}
+    \item De momento no contamos con vocales
+    \item Cuenta con \textbf{catorce} asociados a día de hoy
+    \item Formada el 22 de marzo de \textbf{2008} en \textbf{Castellón} de la Plana
+  \end{itemize}
+\end{frame}
+
+\section{Objetivos de KDE España}
+
+\begin{frame}{Objetivos de KDE España (1)}
+  \framesubtitle{}
+  \begin{itemize}
+    \item \textbf{Promover} la utilización de \textbf{software libre}, y en concreto del entorno de escritorio \textbf{KDE}
+    \item \textbf{Desarrollar} y \textbf{mejorar} KDE como entorno de escritorio y entorno de desarrollo basado en software libre.
+    \begin{itemize}
+      \item Aportaciones de \textbf{código}
+      \item Aportaciones \textbf{artísticas}
+      \item \textbf{Traducciones}
+      \item \textbf{Documentación}
+      \item ...
+    \end{itemize}
+    \item \textbf{Impulsar} el \textbf{crecimiento} de la comunidad de \textbf{desarrolladores} y \textbf{colaboradores} de KDE en España
+    \begin{itemize}
+      \item Actividades de \textbf{generación de conocimiento}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Objetivos de KDE España (2)}
+  \framesubtitle{}
+  \begin{itemize}
+    \item \textbf{Colaborar} y \textbf{animar a otros} a colaborar en KDE
+    \item \textbf{Facilitar} la \textbf{comunicación} entre usuarios y desarrolladores de KDE
+    \item \textbf{Promover} la \textbf{traducción} y \textbf{adaptación} de KDE a las distintas lenguas del estado español
+    \item \textbf{Promover} y \textbf{apoyar} la realización de \textbf{actividades o encuentros} de colaboradores y usuarios de KDE
+    \item \textbf{Colaborar} e \textbf{intercambiar conocimientos} con proyectos similares a nivel nacional e internacional
+    \item \textbf{Difundir} el conocimiento y \textbf{facilitar} el aprendizaje de las tecnologías del entorno de escritorio KDE a los interesados en participar en la comunidad
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Objetivos de KDE España (3)}
+  \framesubtitle{}
+  \begin{itemize}
+    \item Dinamizar el contacto entre las empresas, instituciones oficiales y la comunidad de usuarios y colaboradores en cuestiones relacionadas con KDE
+  \end{itemize}
+\end{frame}
+
+
+\end{document}

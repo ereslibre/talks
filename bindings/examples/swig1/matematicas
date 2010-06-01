@@ -1,0 +1,4 @@
+#!/usr/bin/env python
+import matematicas
+
+print matematicas.suma(4.2, 5.8)

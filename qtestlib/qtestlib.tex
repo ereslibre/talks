@@ -1,0 +1,176 @@
+\documentclass[12pt]{beamer}
+
+\usetheme{Oxygen}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{}
+
+\setbeamercovered{transparent}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{verbatim}
+\usepackage{lgrind}
+\usepackage{listings}
+\usepackage{beamertexpower}
+\usepackage{amsmath}
+\usepackage{array}
+
+\pdfinfo
+{
+  /Title       (QTestLib)
+  /Creator     (Kile)
+  /Subject     (Testeo de aplicaciones y librerias)
+  /Author      (Rafael Fernandez Lopez)
+}
+
+\title{QTestLib}
+\subtitle{Testeo de aplicaciones y librerías}
+\author{Rafael Fernández López}
+\institute{}
+\date{Marzo 2008}
+
+\lstset{
+  basicstyle=\ttfamily,
+  showstringspaces=false,
+  language=
+}
+
+\begin{document}
+
+\frame
+{
+  \titlepage
+  {
+    \frametitle{Aditel iParty X}
+    \framesubtitle{ereslibre@kde.org}
+  }
+}
+
+\section*{}
+\begin{frame}
+  \frametitle{Contenidos}
+  \framesubtitle{ereslibre@kde.org}
+  \tableofcontents
+\end{frame}
+
+\AtBeginSubsection[]
+{
+  \frame<handout:0>
+  {
+    \frametitle{Contenidos}
+    \tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded]
+  }
+}
+
+\newcommand<>{\highlighton}[1]{%
+  \alt#2{\structure{#1}}{{#1}}
+}
+
+\newcommand{\icon}[1]{\pgfimage[height=1em]{#1}}
+
+
+\section{QTestLib}
+
+\subsection{La importancia de los tests}
+\begin{frame}
+  \frametitle{QTestLib}
+  \framesubtitle{La importancia de los tests}
+  \begin{block}{}
+    \begin{itemize}
+      \item Permiten encontrar errores comunes en la lógica de las librerías y aplicaciones.
+      \medskip
+      \pause
+      \item Aseguran dentro de lo posible que si algo funcionaba, seguirá funcionando, a pesar de haber:
+        \begin{itemize}
+          \item Introducido nuevas funcionalidades.
+          \pause
+          \item Modificado funcionalidades existentes.
+          \pause
+          \item Reestructurado el código de la librería o aplicación internamente.
+        \end{itemize}
+      \medskip
+      \pause
+      \item Ayudan a encontrar errores de diseño.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\subsection{La infraestructura de Qt}
+\begin{frame}
+  \frametitle{QTestLib}
+  \framesubtitle{La infraestructura de Qt (1)}
+  \begin{block}{}
+    Según sus diseñadores, QTestLib es/contiene:
+    \begin{itemize}
+      \item Ligero.
+      \pause
+      \item Prácticamente independiente.
+        \begin{itemize}
+          \begin{small}
+            \item Únicamente requiere unos pocos símbolos de la librería QtCore para los tests no gráficos.
+          \end{small}
+        \end{itemize}
+      \pause
+      \item Rápido y directo.
+        \begin{itemize}
+          \begin{small}
+            \item No requiere aplicaciones externas que ejecuten los tests.
+          \end{small}
+        \end{itemize}
+      \pause
+      \item Baterías de datos.
+        \begin{itemize}
+          \begin{small}
+            \item Es posible ejecutar los mismos tests con una grandísima cantidad de datos y casos gracias a la infraestructura.
+          \end{small}
+        \end{itemize}
+      \pause
+      \item Tests gráficos.
+        \begin{itemize}
+          \begin{small}
+            \item QTestLib es capaz de simular eventos de ratón y teclado para probar aplicaciones/elementos gráficos.
+          \end{small}
+        \end{itemize}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{QTestLib}
+  \framesubtitle{La infraestructura de Qt (2)}
+  \begin{block}{}
+    \begin{itemize}
+      \item Integración.
+        \begin{itemize}
+          \begin{small}
+            \item QTestLib emite mensajes que son fácilmente recogidos por entornos de desarrollo como KDevelop o Microsoft Visual Studio.
+          \end{small}
+        \end{itemize}
+      \pause
+      \item Thread-safe.
+        \begin{itemize}
+          \begin{small}
+            \item La notificación de errores es atómica y thread-safe.
+          \end{small}
+        \end{itemize}
+      \pause
+      \item Seguridad de tipos.
+        \begin{itemize}
+          \begin{small}
+            \item La utilización de templates evita errores introducidos por conversiones de tipo llevadas a cabo implícitamente.
+          \end{small}
+        \end{itemize}
+      \pause
+      \item Fácilmente extensible.
+        \begin{itemize}
+          \begin{small}
+            \item Es sencillo añadir nuevos tipos personalizados a los tests y a la salida de los mismos.
+          \end{small}
+        \end{itemize}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+
+\end{document}

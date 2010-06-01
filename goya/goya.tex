@@ -1,0 +1,206 @@
+\documentclass[12pt]{beamer}
+
+\usetheme{Oxygen}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{}
+
+\setbeamercovered{transparent}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{verbatim}
+\usepackage{lgrind}
+\usepackage{listings}
+\usepackage{beamertexpower}
+\usepackage{amsmath}
+\usepackage{array}
+
+\pdfinfo
+{
+  /Title       (Goya - Un punto de vista diferente)
+  /Creator     (Kile)
+  /Subject     (Akademy-es 2007)
+  /Author      (Rafael Fernandez Lopez)
+}
+
+\title{Goya}
+\subtitle{Un punto de vista diferente}
+\author{Rafael Fernández López}
+\institute{}
+\date{Noviembre 2007}
+
+\lstset{
+  basicstyle=\ttfamily,
+  showstringspaces=false,
+  language=
+}
+
+\begin{document}
+
+\frame
+{
+  \titlepage
+  {
+    \frametitle{Akademy-es 2007}
+    \framesubtitle{ereslibre@kde.org}
+  }
+}
+
+\section*{}
+\begin{frame}
+  \frametitle{Akademy-es 2007}
+  \framesubtitle{ereslibre@kde.org}
+  \tableofcontents
+\end{frame}
+
+\AtBeginSubsection[]
+{
+  \frame<handout:0>
+  {
+    \frametitle{Contenidos}
+    \tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded]
+  }
+}
+
+\newcommand<>{\highlighton}[1]{%
+  \alt#2{\structure{#1}}{{#1}}
+}
+
+\newcommand{\icon}[1]{\pgfimage[height=1em]{#1}}
+
+
+\section{Modelo/Vista/Controlador}
+
+\subsection{Conceptos}
+\begin{frame}
+  \frametitle{Modelo/Vista/Controlador}
+  \framesubtitle{Conceptos}
+
+  \begin{block}{}
+    \begin{itemize}
+      \item El \emph{modelo} ``guarda'' la información en estructuras de datos elegidas para el problema en concreto.
+      \medskip
+      \pause
+      \item La \emph{vista} decide dónde se dibujará cada elemento y con qué opciones, a veces dependiendo de ciertas propiedades que el modelo conoce. Recorrerá al menos todos los elementos que necesitan ser dibujados estableciendo sus propiedades (posición, estado, ...).
+      \medskip
+      \pause
+      \item El \emph{controlador} se encarga de dibujar un elemento, ignorando todo lo que le rodea.
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+\subsection{Ventajas}
+\begin{frame}
+  \frametitle{Modelo/Vista/Controlador}
+  \framesubtitle{Ventajas}
+
+  \begin{block}{}
+    \begin{itemize}
+      \item Favorece a la óptima utilización de memoria. No se desperdician recursos.
+        \begin{itemize}
+          \item \emph{Modelo} compartido, \emph{controlador} específico.
+          \medskip
+          \pause
+          \item \emph{Controlador} compartido, \emph{modelo} específico.
+          \medskip
+          \pause
+          \item Otras posibilidades.
+        \end{itemize}
+      \medskip
+      \pause
+      \item Fácilmente extendible.
+      \medskip
+      \pause
+      \item Favorece la abstracción \textcolor{oxygenorange}{$\rightarrow$} Simplifica la reutilización de código.
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+\subsection{Desventajas}
+\begin{frame}
+  \frametitle{Modelo/Vista/Controlador}
+  \framesubtitle{Desventajas}
+
+  \begin{block}{}
+    \begin{itemize}
+      \item Interacción con el usuario.
+        \begin{itemize}
+            \item Editores.
+            \begin{itemize}
+              \item \alert{No} es su finalidad.
+              \medskip
+              \pause
+              \item Gasto de memoria masivo e innecesario, contrario a la ideología \emph{MVC}.
+              \medskip
+              \pause
+              \item Anomalías fruto de un uso incorrecto.
+              \medskip
+              \pause
+              \item Potencia muy reducida, al menos para versiones de Qt anteriores a la 4.4.
+            \end{itemize}
+        \end{itemize}
+      \medskip
+      \pause
+      \item Accesibilidad.
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+\section{Goya}
+
+\subsection{Misión}
+\begin{frame}
+  \frametitle{Goya}
+  \framesubtitle{Misión}
+
+  \begin{block}{}
+    \begin{itemize}
+      \item Permitir la interacción con el usuario.
+      \begin{itemize}
+        \item No complicar la interfaz \emph{MVC}.
+        \medskip
+        \pause
+        \item Seguir las directrices \emph{MVC} salvando la mayor cantidad de memoria posible.
+        \medskip
+        \pause
+        \item Mayor versatilidad posible.
+        \medskip
+        \pause
+        \item Uso de \emph{signals} y \emph{slots}.
+      \end{itemize}
+      \medskip
+      \pause
+      \item Mejorar la accesibilidad.
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+\subsection{Estructura}
+\begin{frame}
+  \frametitle{Goya}
+  \framesubtitle{Estructura}
+
+  \begin{block}{}
+    \begin{itemize}
+      \item Capa adicional que se sitúa entre la \emph{vista} y el \emph{controlador}, capturando eventos y reaccionando ante ellos.
+    \end{itemize}
+    \medskip
+    \pause
+    \begin{center}
+      \begin{tabular}{cccccc}
+        \emph{Controlador} & \multirow{5}{*}{Prueba} \\
+        \textcolor{oxygenorange}{$\Updownarrow$} \\
+        Goya & & \textcolor{oxygenorange}{$\Leftrightarrow$} & \emph{Modelo} & \textcolor{oxygenorange}{$\Leftrightarrow$} & Datos\\
+        \textcolor{oxygenorange}{$\Updownarrow$} \\
+        \emph{Vista}
+      \end{tabular}
+    \end{center}
+    \begin{tiny}\begin{center}Donde ``\textcolor{oxygenorange}{$\Leftrightarrow$}'' indica flujo de información.\end{center}\end{tiny}
+  \end{block}
+\end{frame}
+
+\end{document}

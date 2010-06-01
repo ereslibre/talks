@@ -1,0 +1,219 @@
+\documentclass[12pt]{beamer}
+
+\usetheme{Oxygen}
+\usepackage[spanish]{babel}
+\usepackage{thumbpdf}
+\usepackage{wasysym}
+\usepackage{ucs}
+\usepackage[utf8]{inputenc}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade}
+\usepackage{verbatim}
+\usepackage{ulem}
+\usenavigationsymbolstemplate{}
+
+\pdfinfo
+{
+  /Title       (KDE-ESPANA)
+  /Creator     (KILE)
+  /Author      (RAFAEL FERNANDEZ LOPEZ Y ALBERT ASTALS CID)
+}
+
+\AtBeginSection[]
+{
+  \frame<handout:0>
+  {
+    \frametitle{Akademy-es 2009}
+    \tableofcontents[currentsection]
+  }
+}
+
+\title{KDE España}
+\subtitle{Una asociación para \textbf{TÍ}}
+\author{Rafael Fernández López, Albert Astals Cid}
+\date{Julio, 2009}
+
+\begin{document}
+
+\begin{frame}{Akademy-es 2009}
+  \framesubtitle{ereslibre@kde.org, aacid@kde.org}
+  \titlepage
+\end{frame}
+
+
+\section*{}
+\begin{frame}{Akademy-es 2009}
+  \framesubtitle{}
+  \tableofcontents[section=1]
+\end{frame}
+
+\newcommand<>{\highlighton}[1]{%
+  \alt#2{\structure{#1}}{{#1}}
+}
+
+\newcommand{\icon}[1]{\pgfimage[height=1em]{#1}}
+
+
+\section{Un poco de historia}
+
+\begin{frame}{KDE en España}
+	\framesubtitle{Kaixo! Eu parlo castellano}
+	\begin{itemize}
+		\item 25 de Agosto de 1997
+		\begin{itemize}
+			\item Revisión 849 - [Roberto] Spanish translation for KDE. I am not really sure if the code
+should be es or sp. Anybody knows?
+		\end{itemize}
+ 		\item 16 de Marzo de 1998
+		\begin{itemize}
+ 			\item Revisión 6144 - added catalan
+		\end{itemize}
+		\item 31 de Agosto de 2000
+		\begin{itemize}
+			\item Revisión 62283 - Added again the updated desktop and kdelibs .po files (Gallego)
+		\end{itemize}
+		\item 21 de Marzo de 2001
+		\begin{itemize}
+ 			\item Revisión 88089 - *** empty log message *** (Euskera)
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{KDE en España}
+	\framesubtitle{Los programadores}
+	\begin{itemize}
+		\item XXX de 1997 (beta de KDE 0.12) - Antonio Larrosa
+ 		\item Julio de 2003 - Albert Astals Cid
+		\item Marzo de 2006 - Alfredo Beaumont Sainz
+		\item Octubre de 2006 - Rafael Fernández López
+		\item Febrero de 2007 - Aleix Pol Gonzalez
+		\item Noviembre de 2007 - Eduardo Robles Elvira
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{KDE en España}
+	\framesubtitle{Vivan las \sout{cervezas} \sout{fiestas} charlas}
+	\begin{itemize}
+		\item Agosto/Setiembre de 2005 - Málaga - aKademy 2005
+		\item Marzo de 2006 - Barcelona - aKademy-es 2006
+		\item Noviembre de 2006 - Zaragoza - Jornadas técnicas KDE
+		\item Marzo de 2007 - A Coruña - Guademy
+		\item Noviembre de 2007 - Zaragoza - aKademy-es 2007
+		\item Marzo de 2008 - Catellón - Aditel iParty 10
+		\item Abril de 2008 - Valencia - Guademy 2
+		\item Noviembre de 2008 - A Coruña - aKademy-es 2008
+        \item Julio de 2009 - Las Palmas de Gran Canaria - Akademy / Akademy-es 2009
+	\end{itemize}
+\end{frame}
+
+
+
+
+\section{¿Qué es KDE España?}
+
+\begin{frame}{¿Qué es KDE España?}
+  \framesubtitle{}
+  \begin{itemize}
+    \item KDE España es una \textbf{asociación cultural} sin ánimo de lucro
+    \begin{itemize}
+      \item Se encuentra en \textbf{proceso de regularización}
+    \end{itemize}
+    \item Cuenta con una junta directiva de \textbf{cuatro} personas:
+    \begin{itemize}
+      \item Presidente - Albert Astals Cid
+      \item Vicepresidente - Rafael Fernández López
+      \item Tesorero - Ana Beatriz Guerrero López
+      \item Secretario - Aleix Pol i Gonzàlez
+    \end{itemize}
+    \item De momento no contamos con vocales
+    \item Cuenta con \textbf{dieciséis} asociados a día de hoy
+    \item Formada el 9 de julio de \textbf{2009} en \textbf{Las Palmas} de Gran Canaria
+  \end{itemize}
+\end{frame}
+
+\section{¿Qué NO es KDE España?}
+
+\begin{frame}{¿Qué NO es KDE España?}
+  \framesubtitle{}
+  \begin{itemize}
+    \item Un \textbf{competidor} del \textbf{KDE e.V.}
+    \begin{itemize}
+      \item Persigue exactamente los \textbf{mismos objetivos} que el KDE e.V.
+      \item Asociación ``\textbf{hermana}''
+      \item \textbf{Independiente} en cuanto a recursos
+      \begin{itemize}
+        \item No depende del KDE e.V., cuenta con sus propios recursos
+      \end{itemize}
+      \item Un \textbf{conjunto} de personas \textbf{determinado}: usuarios y
+            contribuidores de nacionalidad española o residentes en el territorio estatal.
+    \end{itemize}
+    \item Un \textbf{representante legal} del proyecto \textbf{KDE}
+  \end{itemize}
+\end{frame}
+
+
+\section{Objetivos de KDE España}
+
+\begin{frame}{Objetivos de KDE España (1)}
+  \framesubtitle{}
+  \begin{itemize}
+    \item \textbf{Promover} la utilización de \textbf{software libre}, y en concreto del entorno de escritorio \textbf{KDE}
+    \item \textbf{Desarrollar} y \textbf{mejorar} KDE como entorno de escritorio y entorno de desarrollo basado en software libre.
+    \begin{itemize}
+      \item Aportaciones de \textbf{código}
+      \item Aportaciones \textbf{artísticas}
+      \item \textbf{Traducciones}
+      \item \textbf{Documentación}
+      \item ...
+    \end{itemize}
+    \item \textbf{Impulsar} el \textbf{crecimiento} de la comunidad de \textbf{desarrolladores} y \textbf{colaboradores} de KDE en España
+    \begin{itemize}
+      \item Actividades de \textbf{generación de conocimiento}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Objetivos de KDE España (2)}
+  \framesubtitle{}
+  \begin{itemize}
+    \item \textbf{Colaborar} y \textbf{animar a otros} a colaborar en KDE
+    \item \textbf{Facilitar} la \textbf{comunicación} entre usuarios y desarrolladores de KDE
+    \item \textbf{Promover} la \textbf{traducción} y \textbf{adaptación} de KDE a las distintas lenguas del estado español
+    \item \textbf{Promover} y \textbf{apoyar} la realización de \textbf{actividades o encuentros} de colaboradores y usuarios de KDE
+    \item \textbf{Colaborar} e \textbf{intercambiar conocimientos} con proyectos similares a nivel nacional e internacional
+    \item \textbf{Difundir} el conocimiento y \textbf{facilitar} el aprendizaje de las tecnologías del entorno de escritorio KDE a los interesados en participar en la comunidad
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Objetivos de KDE España (3)}
+  \framesubtitle{}
+  \begin{itemize}
+    \item \textbf{Dinamizar} el \textbf{contacto} entre las empresas, instituciones oficiales y la comunidad de usuarios y colaboradores en cuestiones relacionadas con KDE
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{¿Cómo me apunto?}
+	 	\textbf{Artículo 27}
+ 	Para poder ser admitido como socio de número se ha de obtener la nominación de un socio fundador o de número así como el apoyo de otros dos socio fundadores o de número. Una vez obtenidos los apoyos necesarios se abrirá un período de discusión de una semana seguida por una votación de dos semanas. El aspirante a socio de número deberá obtener la mayoría simple en dicha votación. Esta votación será realizada por los miembros fundadores y de número.
+\end{frame}
+
+\frame{
+  \frametitle{Akademy-es 2009}
+  \vspace{1.5cm}
+  {\huge \alert{\textbf{Gracias.}} ¿Preguntas?}
+
+  \vspace{1cm}
+  \begin{center}
+    \large \textbf{http://www.kde-espana.es}
+  \end{center}
+
+
+  \vspace{1cm}
+  \begin{flushright}
+    Rafael Fernández López\\Albert Astals Cid
+
+    \structure{\footnotesize{ereslibre@kde.org\\aacid@kde.org}}
+  \end{flushright}
+}
+
+
+\end{document}

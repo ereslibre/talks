@@ -1,0 +1,586 @@
+\documentclass[12pt]{beamer}
+
+%\usetheme{Boadilla}
+%\usetheme{Madrid}
+%\usetheme{Warsaw}
+\usetheme{Oxygen}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{}
+%\setbeamertemplate{headline}{}
+
+\setbeamercovered{transparent}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{verbatim}
+\usepackage{lgrind}
+\usepackage{listings}
+\usepackage{beamertexpower}
+\usepackage{amsmath}
+
+% COLORES
+% \definecolor{minaranja}{HTML}{f7800a}
+% \usecolortheme[named=minaranja]{structure}
+% FIN COLORES
+
+\pdfinfo
+{
+  /Title       (Bash)
+  /Creator     (TeX)
+  /Author      (Rafael Fernández López)
+}
+
+
+\title{Bash}
+\subtitle{Bourne Again Shell}
+\author{Rafael Fernández López}
+\institute{}
+\date{}
+
+\lstset{
+  basicstyle=\ttfamily,
+  showstringspaces=false,
+  language=
+}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section*{}
+\begin{frame}
+  \frametitle{Contenidos}
+  \tableofcontents[section=1,hidesubsections]
+\end{frame}
+
+\AtBeginSection[]
+{
+  \frame<handout:0>
+  {
+    \frametitle{Sección a tratar}
+    \tableofcontents[currentsection,hideallsubsections]
+  }
+}
+
+\AtBeginSubsection[]
+{
+  \frame<handout:0>
+  {
+    \frametitle{Subsección a tratar}
+    \tableofcontents[sectionstyle=show/hide,subsectionstyle=show/shaded/hide]
+  }
+}
+
+\newcommand<>{\highlighton}[1]{%
+  \alt#2{\structure{#1}}{{#1}}
+}
+
+\newcommand{\icon}[1]{\pgfimage[height=1em]{#1}}
+
+
+\section{Historia e Introducción}
+
+\begin{frame}
+  \frametitle{Historia e Introducción}
+  \framesubtitle{}
+
+  \begin{itemize}
+    \item Iniciado en 1987 por Brian Fox. Mejora cada día gracias a la comunidad del Software Libre
+    \medskip
+    \pause
+    \item Todas las distribuciones de GNU/Linux contienen Bash en su sistema de paquetería
+    \medskip
+    \pause
+    \item Se utiliza en GNU/Linux, FreeBSD, Mac OS X... nativamente. Microsoft Windows cuenta con un entorno de \textit{emulación} llamado Cygwin
+    \medskip
+    \pause
+    \item Algo más que una interfaz de comandos: un lenguaje de programación
+  \end{itemize}
+  \medskip
+  \pause
+  \begin{block}{Ejemplo}
+    \texttt{cat elquijote.txt | grep `cat filtro.txt` | less}
+  \end{block}
+\end{frame}
+
+
+\section{¿Qué es Bash?}
+
+\begin{frame}
+  \frametitle{¿Qué es Bash?}
+  \framesubtitle{}
+  \begin{itemize}
+    \item Interfaz de comandos: se encarga de recoger los comandos del usuario para realizar acciones (núcleo y/o aplicaciones)
+    \medskip
+    \pause
+    \item Lenguaje de programación: se pueden escribir guiones que Bash interpretará y ejecutará, con variables, condicionales, bucles...
+    \medskip
+    \pause
+    \item Amigable: Bash admite el coloreado de caracteres. Determinadas aplicaciones o guiones captarán mejor la atención del usuario donde sea necesario
+  \end{itemize}
+\end{frame}
+
+
+\section{Mentalidad}
+
+\begin{frame}
+  \frametitle{Mentalidad}
+  \framesubtitle{}
+  \begin{itemize}
+    \item GNU/Linux en dos palabras:
+    \medskip
+    \begin{itemize}
+      \item Archivos
+      \medskip
+      \item Procesos
+    \end{itemize}
+    \bigskip
+    \pause
+    \item Programas pequeños, estables y rápidos
+    \medskip
+    \begin{itemize}
+      \item Principio KISS: \textit{Keep It Simple, Stupid}
+      \medskip
+      \item Cada programa efectúa una tarea muy determinada
+      \medskip
+      \item Los programas se pueden ``relacionar'' entre sí
+      \medskip
+      \item Casi cualquier tarea que imaginemos se puede realizar con una correcta combinación de estos pequeños programas
+    \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+
+\section{Ventajas e Inconvenientes}
+
+\begin{frame}
+  \frametitle{Ventajas}
+  \framesubtitle{}
+  \begin{itemize}
+    \item Potencia expresiva inmensa
+    \medskip
+    \pause
+    \item Autocompletado
+    \medskip
+    \pause
+    \item Ejecución de tareas secuenciales y/o \textit{paralelas} que pueden ser condicionales, dentro de bucles...
+    \medskip
+    \pause
+    \item Distintos tipos de salida diferenciados (estándar, error...)
+    \medskip
+    \pause
+    \item Consistencia (en GNU/Linux)
+    \medskip
+    \begin{itemize}
+      \item Los dispositivos se tratan como archivos
+      \medskip
+      \item Sistema de archivos jerarquizado
+    \end{itemize}
+    \medskip
+    \pause
+    \item Estabilidad
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Inconvenientes}
+  \framesubtitle{}
+  \begin{itemize}
+    \item Inicialmente menos intuitivo
+    \medskip
+    \pause
+    \item Es necesario \alert{leer}
+    \medskip
+    \pause
+    \item Usuarios con fines de diseño gráfico (retoque de fotografías, diseño en 3D...)
+    \medskip
+    \begin{itemize}
+      \pause
+      \item Se pueden realizar algunas operaciones básicas de modificación de imágenes con algunas utilidades \textit{(imagemagick)} destinadas a ello, pero no lo que un diseñador gráfico necesita
+      \medskip
+      \pause
+      \item Se pueden ver películas gracias a librería \textit{libsvga} si se dispone de una tarjeta SVGA, o en su defecto utilizar las librerías que dibujan con caracteres ASCII \textit{(aalib, libcaca...)}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\section{Uso Básico}
+
+\begin{frame}
+  \frametitle{Herramientas de GNU (1)}
+  \framesubtitle{}
+  \begin{itemize}
+    \item \texttt{cd}: cambia al directorio especificado en una ruta absoluta o relativa
+    \medskip
+    \item \texttt{ls}: lista los archivos y directorios de un determinado directorio
+    \medskip
+    \item \texttt{cp}: copia uno o varios archivos a un directorio destino
+    \medskip
+    \item \texttt{mv}: mueve uno o varios archivos a un directorio destino
+    \medskip
+    \item \texttt{rm}: elimina uno o varios archivos (también puede eliminar directorios enteros con la opción \texttt{-r})
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Herramientas de GNU (1)}
+  \framesubtitle{Ejemplos}
+  \begin{itemize}
+    \item Cambiar al directorio \textit{home}: \texttt{cd $\backsim$}
+    \medskip
+    \item Listado largo del directorio \textit{home}: \texttt{ls -l $\backsim$}
+    \medskip
+    \item Listado largo del directorio \textit{home} (mostrando archivos ocultos): \texttt{ls -la $\backsim$}
+    \medskip
+    \item Copiar archivo.txt en copia.txt: \texttt{cp archivo.txt copia.txt}
+    \medskip
+    \item Copiar el archivo \texttt{$\backsim$/archivo.txt} en el directorio actual: \texttt{cp $\backsim$/archivo.txt .}
+    \medskip
+    \item Mover el archivo \texttt{/root/usuarios.txt} al directorio \textit{home}: \texttt{mv /root/usuarios.txt $\backsim$}
+    \medskip
+    \item Borrar el disco duro: \texttt{rm -rf /}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Herramientas de GNU (2)}
+  \framesubtitle{}
+  \begin{itemize}
+    \item \texttt{mkdir}: crea un directorio
+    \medskip
+    \item \texttt{rmdir}: elimina un directorio vacío
+    \medskip
+    \item \texttt{chown}: modifica el propietario de uno o varios archivos o directorios
+    \medskip
+    \item \texttt{chgrp}: modifica el grupo de uno o varios archivos o directorios
+    \medskip
+    \item \texttt{chmod}: modifica los permisos de uno o varios archivos o directorios
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Herramientas de GNU (2)}
+  \framesubtitle{Ejemplos}
+  \begin{itemize}
+    \item Crear el directorio \texttt{proyectos} en el directorio \textit{home}: \texttt{mkdir \$HOME/proyectos}
+    \medskip
+    \item Elimina el directorio \texttt{proyectos} (\alert{vacío}) del directorio \textit{home}: \texttt{rmdir $\backsim$/proyectos}
+    \medskip
+    \item Cambia el propietario del archivo \texttt{trabajo.txt} a \textit{juan}: \texttt{chown juan trabajo.txt}
+    \medskip
+    \item Cambia el grupo del archivo \texttt{fiesta.txt} a \textit{fiesteros}: \texttt{chgrp fiesteros fiesta.txt}
+    \medskip
+    \item Cambia los permisos a mi directorio \textit{home} (y todos sus contenidos) para que todo el mundo tenga todo tipo de permisos: \texttt{chmod -R 777 $\backsim$}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Redirecciones (1)}
+  \framesubtitle{}
+  Existen diferentes descriptores de \textit{ficheros}:
+  \medskip
+  \begin{itemize}
+    \item \texttt{stdin}: entrada estándar, representada por el descriptor número 0
+    \medskip
+    \item \texttt{stdout}: salida estándar, representada por el descriptor número 1
+    \medskip
+    \item \texttt{stderr}: salida de error, representada por el descriptor número 2
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Redirecciones (2)}
+  \framesubtitle{}
+  \begin{itemize}
+    \item \texttt{comando > salida.txt}: la salida estándar de \texttt{comando} se escribirá en \texttt{salida.txt} y no por pantalla. Si el archivo contenía algo será sobreescrito
+    \medskip
+    \item \texttt{comando >> salida.txt}: la salida estándar de \texttt{comando} se añadirá al contenido de \texttt{salida.txt}, y no se mostrará por pantalla
+    \medskip
+    \item \texttt{comando 2> error.txt}: la salida de error de \texttt{comando} se escribirá en \texttt{error.txt} y no por pantalla
+    \medskip
+    \item \texttt{comando 2>> error.txt}: la salida de error de \texttt{comando} se añadirá al contenido de \texttt{error.txt}, y no se mostrará por pantalla
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Redirecciones (2)}
+  \framesubtitle{Ejemplos}
+  \begin{itemize}
+    \item \texttt{ls -la > directorioactual.txt}
+    \medskip
+    \item \texttt{date >> fechasespeciales.txt}
+    \medskip
+    \item \texttt{ls /root 2> $\backsim$/quefalloocurrio.txt}
+    \medskip
+    \item \texttt{cp $\backsim$/archivo.txt /root 2>> $\backsim$/logdefallos.txt}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Redirecciones (3)}
+  \framesubtitle{}
+  \begin{itemize}
+    \item \texttt{comando [redirección] destino 2>\&1}: redirecciona la salida de error de \texttt{comando} a la salida estándar
+    \medskip
+    \item \texttt{comando [redirección] destino 1>\&2}: redirecciona la salida estándar de \texttt{comando} a la salida de error
+    \medskip
+    \item \texttt{comando \&> todo.txt}: redirecciona tanto la salida estándar como la de error hacia el fichero \texttt{todo.txt}, sobreescribiendo su contenido, y no se muestra por pantalla
+    \medskip
+    \item \texttt{comando \&>> todo.txt}: redirecciona tanto la salida estándar como la de error, lo añade al contenido de \texttt{todo.txt} y no se muestra por pantalla
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Redirecciones (3)}
+  \framesubtitle{Ejemplos}
+  \begin{itemize}
+    \item \texttt{ls /root >> $\backsim$/logdefallosyexitos.txt 2>\&1}
+    \medskip
+    \item \texttt{ls -la > $\backsim$/listado.txt 1>\&2 } \alert{\texttt{listado.txt} vacío}
+    \medskip
+    \item \texttt{cp -rv $\backsim$ /mnt/usb \&> $\backsim$/backupoperacion.txt}
+    \medskip
+    \item \texttt{cp -rv $\backsim$ /mnt/usb \&>> $\backsim$/logoperaciones.txt}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Redirecciones (4)}
+  \framesubtitle{}
+  Es posible redireccionar la entrada estándar también (\texttt{stdin}). Se puede escribir un comando con la siguiente forma:
+  \medskip\linebreak
+  \texttt{comando < ficheroConDatos.txt}
+  \medskip\linebreak
+  De esta forma, \texttt{comando} tomará como datos de entrada el contenido del fichero \texttt{ficheroConDatos.txt}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Redirecciones (5)}
+  \framesubtitle{}
+  Los denominados \textit{Here documents} son una manera de pasar datos a un programa de forma que el usuario pueda introducir más de una línea de texto. La sintaxis es la siguiente:
+  \medskip\linebreak
+  \texttt{comando << SecuenciaDeSalida}\linebreak
+  \texttt{> ... datos ...}\linebreak
+  \texttt{> ...}\linebreak
+  \texttt{> SecuenciaDeSalida}
+  \medskip\linebreak
+  Características:
+  \begin{itemize}
+    \item La entrada se va almacenando. Se van creando nuevas líneas pulsando la tecla \textit{Intro}
+    \item Se acaban de recibir datos cuando se detecta la cadena de texto que se seleccionó para indicar la salida, en este caso \texttt{SecuenciaDeSalida}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Redirecciones (6)}
+  \framesubtitle{}
+  El objetivo de las redirecciones siempre son ficheros. Los \alert{dispositivos son ficheros} en GNU/Linux
+  \medskip
+  \begin{itemize}
+    \item \texttt{comando \&> /dev/null}: tanto la salida estándar como la de error serán redireccionadas al dispositivo \texttt{/dev/null}, que lo único que hace es obviar todo lo que le llegue. De esta forma estamos ``desechando'' la salida de \texttt{comando}, y haciendo que sea una ejecución \textit{silenciosa}
+    \medskip
+    \item \texttt{comando > /dev/lp}: la salida estándar de \texttt{comando} está siendo redireccionada a la impresora predeterminada
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tuberías}
+  \framesubtitle{}
+  \begin{itemize}
+    \item \texttt{comando1 | comando2}: la entrada de \texttt{comando2} será tomada de la salida de \texttt{comando1} (que podrá ser salida estándar o de error)
+    \medskip
+    \item Se pueden encadenar de modo que podemos tener algo así:\medskip\linebreak\texttt{comando1 | comando2 | ... | comando n}
+  \end{itemize}
+  \begin{block}{Nota}
+    Tenemos el mismo resultado si ejecutamos los siguientes dos comandos:
+    \begin{itemize}
+      \item \texttt{cat archivoConDatos.txt | grep -i ``prueba''} (Tubería)
+      \item \texttt{grep -i ``prueba'' < archivoConDatos.txt} (Redirección)
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Redirecciones y tuberías}
+  \framesubtitle{Utilización de GNU \texttt{tee}}
+  \texttt{tee} redirecciona la salida estándar tanto a la pantalla como a los ficheros que queramos
+  \medskip
+  \begin{itemize}
+    \item Si queremos redireccionar la salida de error y la estándar es necesario utilizar el tipo de redirección \texttt{``2>\&1''}, ya que \texttt{tee} únicamente trabaja sobre la salida estándar
+  \end{itemize}
+  \medskip
+  El comando \texttt{``ls $\backsim$ | tee mihome.txt''} escribirá la salida estándar del comando \texttt{``ls $\backsim$''} directamente en el archivo \texttt{mihome.txt}, y se mostrará por pantalla.
+  \medskip
+  \begin{itemize}
+    \item Si se desea añadir el resultado del comando al contenido del fichero: \texttt{``ls $\backsim$ | tee -a mihome.txt''}
+    \medskip
+    \item Para redireccionar \texttt{stdout} y \texttt{stderr} haríamos \texttt{``ls $\backsim$ 2>\&1 | tee mihome.txt''}
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Variables}
+  \framesubtitle{}
+  \begin{itemize}
+    \item Estableciendo una variable:\medskip\linebreak\texttt{export MIS\_DOCUMENTOS=$\backsim$/documentos}
+    \medskip
+    \item Leyendo el valor de la variable:\medskip\linebreak\texttt{echo \$MIS\_DOCUMENTOS}
+    \medskip
+    \item Haciendo algo útil con la variable:\medskip\linebreak\texttt{cd \$MIS\_DOCUMENTOS}\medskip\linebreak o más útil todavía:\medskip\linebreak\texttt{cp -r \$PRACTICAS\_COMPI \$MIS\_DOCUMENTOS}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Flujo de comandos}
+  \framesubtitle{}
+  Distintos tipos de flujo de comandos:
+  \medskip
+  \begin{itemize}
+    \item Secuencial\medskip\linebreak\texttt{comando1 ; comando2 ; ... ; comando n}
+    \medskip
+    \item Condicional
+    \medskip
+    \begin{itemize}
+      \item \texttt{Y} lógico:\medskip\linebreak\texttt{comando1 \&\& comando2 \&\& ... \&\& comando n}
+      \medskip
+      \item \texttt{O} lógico:\medskip\linebreak\texttt{comando1 || comando2 || ... || comando n}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Comandos anidados}
+  \framesubtitle{}
+  Con los caracteres especiales \texttt{`} y \texttt{`}, podemos anidar un comando dentro de otro, obteniendo instrucciones y guiones más flexibles.
+  \medskip\linebreak
+  Con este método podemos tener una instrucción de la forma:
+  \medskip\linebreak
+  \texttt{comando1 `comando2`}
+\end{frame}
+
+
+\section{Guiones}
+
+\begin{frame}
+  \frametitle{¿Qué es un guión?}
+  \framesubtitle{}
+  Un guión es un conjunto de comandos, sobre los cuales se han podido establecer operaciones de iteración, bifurcación, etc... Permiten:
+  \medskip\linebreak
+  \begin{itemize}
+    \item Realizar acciones repetitivas mucho más rápidamente (múltiples comandos en una sola llamada al guión)
+    \medskip
+    \item Tomar decisiones en función de los resultados de las operaciones anteriores
+    \medskip
+    \item Administrar el sistema de una forma más sencilla
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Estructura de un guión}
+  \framesubtitle{}
+  Para que un guión se pueda ejecutar es necesario:
+  \medskip
+  \begin{itemize}
+    \item Que comience por \texttt{\#!/bin/bash}
+    \medskip
+    \item Que tenga permisos de ejecución por parte de quien quiera ejecutarlo
+  \end{itemize}
+  \medskip
+  Los símbolos \texttt{\#!} forman un número mágico que indica que es un guión, y que se debe poder ejecutar (si tiene los permisos). En este caso, el \textit{shell} que queremos que lo ejecute es \textit{bash}, cuyo ejecutable se encuentra en \texttt{/bin/bash}.
+  \medskip\linebreak
+  Se puede seleccionar cualquier otro \textit{shell} para que ejecute el código, pero hay que tener en cuenta que ciertas instrucciones cambian ligeramente de uno a otro. El más usado en general es \textit{bash}.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Relacionándose con el entorno}
+  \framesubtitle{}
+  Las formas en las que el guión se relaciona con el \textit{exterior} son de la siguiente manera:
+  \medskip
+  \begin{itemize}
+    \item Variables globales leídas dentro del guión (\texttt{\$PATH}...)
+    \medskip
+    \item Parámetros pasados al guión
+    \begin{itemize}
+      \item \texttt{\$1}: parámetro 1; \texttt{\$2}: parámetro 2; ... ; \texttt{\$n}: parámetro n-ésimo
+      \item \texttt{\$\#}: obtiene el número de parámetros que han sido pasados el guión
+      \item \texttt{\$@}: recoge todos los parámetros que han sido pasados al guión
+    \end{itemize}
+    \item \texttt{\$?}: pregunta por el código de retorno de la última ejecución de un programa
+      \begin{itemize}
+        \item 0: éxito
+        \item $\neq$0: fallo
+      \end{itemize}
+    \item Escritura previa en un archivo del que el guión tomará los datos
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Variables en guiones}
+  \framesubtitle{}
+  Las variables en los guiones se inicializan como cabría esperar. Por ejemplo:
+  \medskip\linebreak
+  \texttt{i=0} \alert{Sin espacios, o \textit{Bash} no reconocerá la inicialización}
+  \medskip\linebreak
+  Si en el transcurso del guión queremos cambiar de valor a la variable \texttt{i} existen diferentes sintaxis para hacerlo:
+  \medskip
+  \begin{itemize}
+    \item \texttt{i=\$((i + 1))}
+    \item \texttt{i=\$((\$i + 1))}
+    \item \texttt{let ``i = i + 1''}
+    \item \texttt{let ``i = \$i + 1''}
+  \end{itemize}
+  \medskip
+  \alert{Importante: Bash no puede trabajar con números en coma flotante, únicamente con enteros. Se puede utilizar \texttt{bc}. Algo así: \texttt{echo 3 / 4 | bc -l} devolverá \texttt{0.75}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Funciones}
+  \framesubtitle{}
+  Las funciones nos permiten evitar la repetición de código, y hacen posible la recursividad. Una función en \textit{Bash} se define de la siguiente forma:
+  \medskip\linebreak
+  \texttt{function mifuncion}\linebreak
+  \texttt{\{}\linebreak
+  \texttt{...}\linebreak
+  \texttt{\}}
+  \medskip
+  \begin{itemize}
+    \item  Dentro de la función se pueden hacer referencia a los parámetros pasados a la función de la forma \texttt{\$1}, para el primer parámetro; \texttt{\$2}, para el segundo parámetro, ... ; \texttt{\$n} para el parámetro n-ésimo
+    \medskip
+    \item De igual manera, podemos hacer referencia a \texttt{\$\#} para saber el número de parámetros que se le pasó a la función, y también a \texttt{\$@} para obtener la lista de parámetros
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Interacción con el usuario}
+  \framesubtitle{}
+  Podemos crear menús sencillos gracias a la sentencia \texttt{read}. Por ejemplo:
+  \medskip\linebreak
+  \texttt{\#!/bin/bash}\linebreak
+  \texttt{echo -n ``Escribe tu nombre y apellido: ''}\linebreak
+  \texttt{read nombre apellido}\linebreak
+  \texttt{echo}\linebreak
+  \texttt{echo ``Bienvenid@ \$apellido, \$nombre``}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    \begin{Huge}¿Preguntas?\end{Huge}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    \alert{\begin{Huge}¡ Gracias por venir !\end{Huge}}
+    \bigskip\linebreak
+    http://gul.diskobolo.com
+  \end{center}
+\end{frame}
+
+
+\end{document}

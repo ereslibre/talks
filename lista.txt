@@ -1,0 +1,24 @@
+Guademy 2007
+    A Coruña
+    kuiserver
+
+Akademy 2007
+    Glasgow
+
+Akademy-es 2007
+    Zaragoza
+    goya
+
+Aditel iParty 2008
+    Castellón de la Plana
+    qtestlib
+    kde4
+
+Akademy 2008
+    Saint Katjeline Weaver (Bélgica)
+
+Akademy-es 2008
+    A Coruña
+    kparts
+    kde4
+    kde-españa
